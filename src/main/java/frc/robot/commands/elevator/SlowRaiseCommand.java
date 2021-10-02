@@ -1,23 +1,23 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Robot;
-import org.usfirst.frc.team1072.robot.Slot;
-import org.usfirst.frc.team1072.robot.subsystems.Elevator;
+import frc.robot.Robot;
+import frc.robot.Slot;
+import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  *
  */
-public class SlowRaiseCommand extends Command {
+public class SlowRaiseCommand extends CommandBase {
 	
 	private double height, time;
 
     public SlowRaiseCommand(double height, double time) {
-        requires(Robot.elevator);
+        addRequirements(Robot.elevator);
         this.height = height * Elevator.FEET_TO_ENCODER;
         this.time = time; //ms
     }

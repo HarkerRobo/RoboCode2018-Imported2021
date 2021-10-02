@@ -1,25 +1,25 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Config;
-import org.usfirst.frc.team1072.robot.Robot;
+import frc.robot.Config;
+import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  *
  */
-public class ZeroElevatorCommand extends Command {
+public class ZeroElevatorCommand extends CommandBase {
 	
 	public static final double STALL_CURRENT = 7;
 	
 	public static final double SPEED = -0.3 - 0.1;
 	
 	public ZeroElevatorCommand() {
-		requires(Robot.elevator);
+		addRequirements(Robot.elevator);
 	}
 	
 	// Called just before this Command runs the first time

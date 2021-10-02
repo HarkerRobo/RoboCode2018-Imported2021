@@ -6,16 +6,16 @@ import frc.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class IntakeExpansionCommand extends Command {
+public class IntakeExpansionCommand extends CommandBase {
 	
 	public IntakeExpansionCommand() {
-		requires(Robot.intake);
+		addRequirements(Robot.intake);
 	}
 	
 	// Called just before this Command runs the first time

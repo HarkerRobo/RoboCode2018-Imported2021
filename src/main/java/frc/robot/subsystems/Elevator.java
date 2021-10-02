@@ -17,12 +17,12 @@ import com.ctre.phoenix.motorcontrol.StickyFaults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * Two stage elevator to lift power cubes from the floor to the scale
  */
-public class Elevator extends Subsystem {
+public class Elevator extends SubsystemBase {
 	
 	/**
 	 * Min and max height in feet, by middle of metal bar
@@ -182,7 +182,7 @@ public class Elevator extends Subsystem {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see edu.wpi.first.wpilibj.command.Subsystem#periodic()
+	 * @see edu.wpi.first.wpilibj.command.SubsystemBase#periodic()
 	 */
 	@Override
 	public void periodic() {

@@ -16,7 +16,7 @@ public class JiggleCommand extends TimedCommand {
 	
     public JiggleCommand() {
         super(TIMEOUT);
-        requires(Robot.intake);
+        addRequirements(Robot.intake);
     }
 
     // Called just before this Command runs the first time

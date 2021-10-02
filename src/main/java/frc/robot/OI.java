@@ -24,7 +24,7 @@ import frc.robot.profiling.MotionProfileBuilder;
 import frc.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,8 +33,6 @@ import frc.harkerrobolib.wrappers.DPadButtonWrapper;
 import frc.harkerrobolib.wrappers.GamepadWrapper;
 import frc.harkerrobolib.wrappers.JoystickButtonWrapper;
 
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Trajectory;
 
 /**
  * This class is the glue that binds the controls on the physical operator

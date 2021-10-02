@@ -14,7 +14,7 @@ public class LiftIntakeCommand extends InstantCommand {
 	public static final DoubleSolenoid.Value defaultLift = Robot.IS_COMP ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse;
 	
 	public LiftIntakeCommand() {
-		requires(Robot.intake);
+		addRequirements(Robot.intake);
 	}
 	
 	// Called just before this Command runs the first time

@@ -6,12 +6,12 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  *
  */
-public class IntakeCommand extends Command {
+public class IntakeCommand extends CommandBase {
 	
 	public static final int inSign = -1;
 	public static final double INTAKE_LEFT = inSign * 0.8, INTAKE_RIGHT = inSign * 1.0;
@@ -22,7 +22,7 @@ public class IntakeCommand extends Command {
 	private boolean outtaking;
 
     public IntakeCommand() {
-        requires(Robot.intake);
+        addRequirements(Robot.intake);
     }
 
     // Called just before this Command runs the first time

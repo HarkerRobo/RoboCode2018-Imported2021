@@ -17,7 +17,7 @@ public class SetSolenoidCommand extends InstantCommand {
     public SetSolenoidCommand(DoubleSolenoid sol, Value val) {
         this.sol = sol;
         this.val = val;
-        requires(Robot.intake);
+        addRequirements(Robot.intake);
     }
 
     // Called just before this Command runs the first time

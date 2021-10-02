@@ -12,13 +12,13 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * Intakes cubes in front of the robot, then ejects them onto the switch or the
  * scale
  */
-public class Intake extends Subsystem {
+public class Intake extends SubsystemBase {
 	/**
 	 * Singleton instance
 	 */

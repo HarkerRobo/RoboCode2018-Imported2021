@@ -1,8 +1,8 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Robot;
-import org.usfirst.frc.team1072.robot.Slot;
-import org.usfirst.frc.team1072.robot.subsystems.Elevator;
+import frc.robot.Robot;
+import frc.robot.Slot;
+import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
@@ -18,7 +18,7 @@ public class LowerElevatorCommand extends InstantCommand {
 	public static final double OPEN_LOOP_SPEED = -0.45;
 	
 	public LowerElevatorCommand() {
-		requires(Robot.elevator);
+		addRequirements(Robot.elevator);
 	}
 	
 	// Called just before this Command runs the first time

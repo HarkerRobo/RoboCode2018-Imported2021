@@ -1,13 +1,13 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Robot;
-import org.usfirst.frc.team1072.robot.subsystems.Elevator;
+import frc.robot.Robot;
+import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
@@ -18,7 +18,7 @@ public class SmallRaiseCommand extends InstantCommand {
 	public static final double DIST = 0.2 * Elevator.FEET_TO_ENCODER;
 
     public SmallRaiseCommand() {
-        requires(Robot.elevator);
+        addRequirements(Robot.elevator);
     }
 
     // Called just before this Command runs the first time

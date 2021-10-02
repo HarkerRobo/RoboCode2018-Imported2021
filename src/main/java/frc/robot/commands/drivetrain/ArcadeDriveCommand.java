@@ -5,14 +5,14 @@ import frc.robot.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 
 /**
  * Drive in either arcade or tank drive
  */
-public class ArcadeDriveCommand extends Command {
+public class ArcadeDriveCommand extends CommandBase {
 	
 	public static final double THRESHOLD = 0.05, MAX_SPEED = 5000;
 
@@ -20,7 +20,7 @@ public class ArcadeDriveCommand extends Command {
 	private double TOP_MAX_SPEED = 0.4;
 
 	public ArcadeDriveCommand() {
-        requires(Robot.drivetrain);
+        addRequirements(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time

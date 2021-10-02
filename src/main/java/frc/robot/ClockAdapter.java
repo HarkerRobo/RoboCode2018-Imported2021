@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1072.robot;
+package frc.robot;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;

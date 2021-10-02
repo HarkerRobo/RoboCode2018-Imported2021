@@ -1,14 +1,14 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Robot;
-import org.usfirst.frc.team1072.robot.RobotMap;
-import org.usfirst.frc.team1072.robot.Slot;
-import org.usfirst.frc.team1072.robot.Config;
-import org.usfirst.frc.team1072.robot.subsystems.Elevator;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.Slot;
+import frc.robot.Config;
+import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
@@ -23,7 +23,7 @@ public class SetElevatorCommand2 extends InstantCommand {
 	 * @param height height (in feet) above the default position
 	 */
     public SetElevatorCommand2(double height) {
-        requires(Robot.elevator);
+        addRequirements(Robot.elevator);
         this.height = height * Elevator.FEET_TO_ENCODER;
     }
 

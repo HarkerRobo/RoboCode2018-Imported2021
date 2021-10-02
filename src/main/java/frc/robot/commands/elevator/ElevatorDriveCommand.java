@@ -1,21 +1,21 @@
-package org.usfirst.frc.team1072.robot.commands.elevator;
+package frc.robot.commands.elevator;
 
-import org.usfirst.frc.team1072.robot.Config;
-import org.usfirst.frc.team1072.robot.OI;
-import org.usfirst.frc.team1072.robot.Robot;
-import org.usfirst.frc.team1072.robot.Slot;
-import org.usfirst.frc.team1072.robot.subsystems.Elevator;
+import frc.robot.Config;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.Slot;
+import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  *
  */
-public class ElevatorDriveCommand extends Command {
+public class ElevatorDriveCommand extends CommandBase {
 	
 	public static final double START_THRESHOLD = 0.3, THRESHOLD = 0.15;
 	
@@ -26,7 +26,7 @@ public class ElevatorDriveCommand extends Command {
 //	private StickyFaults sticky = new StickyFaults();
 
     public ElevatorDriveCommand() {
-        requires(Robot.elevator);
+        addRequirements(Robot.elevator);
     }
 
     // Called just before this Command runs the first time

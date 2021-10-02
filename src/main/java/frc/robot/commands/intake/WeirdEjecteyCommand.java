@@ -4,15 +4,15 @@ import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  *
  */
-public class WeirdEjecteyCommand extends Command {
+public class WeirdEjecteyCommand extends CommandBase {
 
     public WeirdEjecteyCommand() {
-        requires(Robot.intake);
+        addRequirements(Robot.intake);
     }
 
     // Called just before this Command runs the first time

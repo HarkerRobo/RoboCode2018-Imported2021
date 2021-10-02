@@ -20,12 +20,12 @@ import com.ctre.phoenix.motorcontrol.StickyFaults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * 4-Cim west coast drivetrain to move the robot
  */
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends SubsystemBase {
 	
 	public static final double MAX_SPEED = 0;
 	
@@ -187,7 +187,7 @@ public class Drivetrain extends Subsystem {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see edu.wpi.first.wpilibj.command.Subsystem#periodic()
+	 * @see edu.wpi.first.wpilibj.command.SubsystemBase#periodic()
 	 */
 	@Override
 	public void periodic() {
