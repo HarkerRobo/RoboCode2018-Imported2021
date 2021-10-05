@@ -1,15 +1,11 @@
 package frc.robot.commands.elevator;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.Slot;
-import frc.robot.Config;
 import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  * Command to move the elevator to a specific height
@@ -28,7 +24,7 @@ public class SetElevatorCommand2 extends InstantCommand {
     }
 
     //Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
 //    		Robot.elevator.getMaster().setIntegralAccumulator(0, 0, 0);
     		if(Robot.elevator.isMotionMagicStatus() && Robot.elevator.isEncoderStatus()) {
     			Robot.elevator.getMaster().selectProfileSlot(Slot.ELEVATOR_MOTION_MAGIC.getSlot(), 0);

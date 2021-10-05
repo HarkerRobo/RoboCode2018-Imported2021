@@ -4,29 +4,28 @@ import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  *
  */
-public class JiggleCommand extends TimedCommand {
+public class JiggleCommand extends InstantCommand {
 
 	public static final double TIMEOUT = 0.4;
 	public static final double IN_SPEED = 0.7, OUT_SPEED = -0.3;
 	
     public JiggleCommand() {
-        super(TIMEOUT);
         addRequirements(Robot.intake);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, OUT_SPEED);
     		Robot.intake.getRightRoller().set(ControlMode.PercentOutput, IN_SPEED);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public void execute() {
     }
 
     // Called once after timeout
@@ -35,7 +34,7 @@ public class JiggleCommand extends TimedCommand {
     		Robot.intake.getRightRoller().set(ControlMode.Disabled, 0);
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     		Robot.intake.getLeftRoller().set(ControlMode.Disabled, 0);

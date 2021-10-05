@@ -26,16 +26,16 @@ public class IntakeCommand extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    		if(OI.gamepad.getRightTriggerPressed()) {
+    public void execute() {
+    		if(OI.DRIVER.getButtonTriggerRight().get()) {
 //    			Robot.intake.open();
     			Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, INTAKE_LEFT);
     			Robot.intake.getRightRoller().set(ControlMode.PercentOutput, INTAKE_RIGHT);
-    		} else if (OI.gamepad.getLeftTriggerPressed()) {
+    		} else if (OI.DRIVER.getButtonTriggerLeft().get()) {
     			outtaking = true;
     			if(Robot.elevator.getMaster().getSelectedSensorPosition(0) > SLOW_HEIGHT) {
     				Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, SLOW_OUTTAKE_LEFT);
@@ -49,13 +49,13 @@ public class IntakeCommand extends CommandBase {
     				outtaking = false;
     				Robot.intake.open();
     			}
-    			Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, OI.operator.getLeftY() * Math.abs(OI.operator.getLeftY()) * 0.8);
-    			Robot.intake.getRightRoller().set(ControlMode.PercentOutput, OI.operator.getRightY() * Math.abs(OI.operator.getRightY()) * 0.8);
+    			Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, OI.OPERATOR.getLeftY() * Math.abs(OI.OPERATOR.getLeftY()) * 0.8);
+    			Robot.intake.getRightRoller().set(ControlMode.PercentOutput, OI.OPERATOR.getRightY() * Math.abs(OI.OPERATOR.getRightY()) * 0.8);
     		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
@@ -65,7 +65,7 @@ public class IntakeCommand extends CommandBase {
     		Robot.intake.getRightRoller().set(ControlMode.Disabled, 0);
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     		Robot.intake.getLeftRoller().set(ControlMode.Disabled, 0);

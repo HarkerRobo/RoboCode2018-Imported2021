@@ -7,7 +7,8 @@ import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  *
@@ -19,12 +20,13 @@ public class IntakeExpansionCommand extends CommandBase {
 	}
 	
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	public void initialize() {
 		if(Robot.intake.isOpen()) {
 			if(Robot.elevator.getMaster().getSelectedSensorPosition(0) > SmallRaiseCommand.DIST) {
 				Robot.intake.close();
 			} else {
-				new SmallRaiseCommand().start();
+				CommandScheduler.getInstance().schedule(new SmallRaiseCommand());
+				CommandScheduler.getInstance().run();
 			}
 		} else  {
 			Robot.intake.open();
@@ -35,7 +37,7 @@ public class IntakeExpansionCommand extends CommandBase {
 	 * @see edu.wpi.first.wpilibj.command.Command#isFinished()
 	 */
 	@Override
-	protected boolean isFinished() {
+	public boolean isFinished() {
 		return true;
 	}
 }

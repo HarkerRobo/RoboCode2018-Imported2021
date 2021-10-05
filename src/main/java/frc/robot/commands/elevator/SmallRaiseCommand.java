@@ -7,8 +7,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  *
@@ -22,17 +22,12 @@ public class SmallRaiseCommand extends InstantCommand {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		Robot.elevator.set(ControlMode.PercentOutput, 0.3);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return Robot.elevator.getMaster().getSelectedSensorPosition(0) > DIST;
+    public void execute() {
     }
 
     // Called once after isFinished returns true
@@ -41,7 +36,7 @@ public class SmallRaiseCommand extends InstantCommand {
     		Robot.intake.close();
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     }

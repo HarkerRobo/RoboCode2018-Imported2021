@@ -3,7 +3,6 @@ package frc.robot.commands.drivetrain;
 import frc.robot.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
@@ -24,7 +23,7 @@ public class ArcadeDriveCommand extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		if(Robot.drivetrain.isEncoderStatus() && Robot.drivetrain.isVelocityClosedStatus()) {
     			Robot.drivetrain.getLeft().selectProfileSlot(Slot.LEFT_VELOCITY.getSlot(), RobotMap.Drivetrain.ENCODER);
     			Robot.drivetrain.getRight().selectProfileSlot(Slot.RIGHT_VELOCITY.getSlot(), RobotMap.Drivetrain.ENCODER);
@@ -32,7 +31,7 @@ public class ArcadeDriveCommand extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public void execute() {
     		if(Robot.drivetrain.isMotorStatus()) {
 
 				double elevPos = Elevator.getInstance().getMaster().getSelectedSensorPosition(0) / ((double) Elevator.LENGTH);
@@ -49,8 +48,8 @@ public class ArcadeDriveCommand extends CommandBase {
 				Drivetrain.getInstance().getLeft().configOpenloopRamp(rampTime, 0);
 				Drivetrain.getInstance().getRight().configOpenloopRamp(rampTime, 0);
 
-    			double x = OI.gamepad.getLeftX();
-    			double y = OI.gamepad.getLeftY();
+    			double x = OI.DRIVER.getLeftX();
+    			double y = OI.DRIVER.getLeftY();
     			double k = Math.max(1.0, Math.max(Math.abs(y + x * x), Math.abs(y - x * x)));
     			double left = (y + x * Math.abs(x)) / k;
     			double right = (y - x * Math.abs(x)) / k;
@@ -69,7 +68,7 @@ public class ArcadeDriveCommand extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
@@ -78,7 +77,7 @@ public class ArcadeDriveCommand extends CommandBase {
     		Robot.drivetrain.set((talon) -> talon.set(ControlMode.Disabled, 0));
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     		Robot.drivetrain.set((talon) -> talon.set(ControlMode.Disabled, 0));

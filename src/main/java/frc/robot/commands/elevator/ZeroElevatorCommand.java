@@ -23,7 +23,7 @@ public class ZeroElevatorCommand extends CommandBase {
 	}
 	
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	public void initialize() {
 		Robot.log("began zeroing elevator");
 		Robot.elevator.set(ControlMode.PercentOutput, SPEED);
 		Robot.elevator.getMaster().configForwardSoftLimitEnable(false, 0);
@@ -32,7 +32,7 @@ public class ZeroElevatorCommand extends CommandBase {
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
+	public boolean isFinished() {
 		if(Robot.elevator.getMaster().getSensorCollection()
 				.isRevLimitSwitchClosed() == (Config.Elevator.REVERSE_NORMAL == LimitSwitchNormal.NormallyOpen)) {
 			return true;
@@ -54,7 +54,7 @@ public class ZeroElevatorCommand extends CommandBase {
 		}
 	}
 	
-	// Called when another command which requires one or more of the same
+	// Called when another command which addRequirements one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		Robot.elevator.set(ControlMode.Disabled, 0);

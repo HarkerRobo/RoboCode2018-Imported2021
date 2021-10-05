@@ -21,7 +21,7 @@ public class LowLevelCommand extends SetElevatorCommand {
 	 * @see frc.robot.commands.v2.SetElevatorCommand#initialize()
 	 */
 	@Override
-	protected void initialize() {
+	public void initialize() {
 		Robot.intake.getRaise().set(Robot.IS_COMP ? Value.kReverse : Value.kForward);
 		super.initialize();
 	}

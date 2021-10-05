@@ -4,7 +4,7 @@ import frc.robot.Robot;
 import frc.robot.commands.elevator.SmallRaiseCommand;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  *
@@ -18,7 +18,7 @@ public class LiftIntakeCommand extends InstantCommand {
 	}
 	
 	// Called just before this Command runs the first time
-	protected void initialize() {
+	public void initialize() {
 		if(Robot.intake.getRaise().get() != defaultLift) {
 			Robot.intake.getRaise().set(defaultLift);
 		} else {

@@ -5,7 +5,6 @@ import frc.robot.Slot;
 import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -23,7 +22,7 @@ public class SlowRaiseCommand extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		double cruise = height * 100.0 / (time - 500);
     		Robot.elevator.getMaster().configMotionCruiseVelocity((int) cruise, 0);
     		Robot.elevator.getMaster().configMotionAcceleration((int) (cruise * 2), 0);
@@ -32,11 +31,11 @@ public class SlowRaiseCommand extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return true;
     }
 
@@ -45,7 +44,7 @@ public class SlowRaiseCommand extends CommandBase {
     		
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     }

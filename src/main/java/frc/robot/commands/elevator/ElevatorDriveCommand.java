@@ -30,14 +30,14 @@ public class ElevatorDriveCommand extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		started = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public void execute() {
 //    		Robot.elevator.getMaster().getStickyFaults(sticky);
-    		if(!started && (Math.abs(OI.gamepad.getRightY()) > START_THRESHOLD)/* || sticky.ForwardLimitSwitch || sticky.ForwardSoftLimit*/) {
+    		if(!started && (Math.abs(OI.DRIVER.getRightY()) > START_THRESHOLD)/* || sticky.ForwardLimitSwitch || sticky.ForwardSoftLimit*/) {
     			started = true;
 //    			Robot.elevator.getMaster().configContinuousCurrentLimit(MANUAL_CURRENT_LIMIT, 0);
 //    			Robot.elevator.getMaster().configPeakCurrentLimit(MANUAL_CURRENT_PEAK, 0);
@@ -46,19 +46,19 @@ public class ElevatorDriveCommand extends CommandBase {
     				Robot.elevator.getMaster().selectProfileSlot(Slot.ELEVATOR_VELOCITY.getSlot(), 0);
     		}
     		if(started) {
-    			double speed = OI.gamepad.getRightY();
+    			double speed = OI.DRIVER.getRightY();
     			speed = Math.min(speed, (Elevator.LENGTH - Robot.elevator.getMaster().getSelectedSensorPosition(0)) / 12000.0);
     			speed = Math.max(speed, -Robot.elevator.getMaster().getSelectedSensorPosition(0) / 12000.0);
     			if(Robot.elevator.isVelocityClosedStatus() && Robot.elevator.isEncoderStatus()) {
-    				Robot.elevator.getMaster().set(ControlMode.Velocity, Math.abs(OI.gamepad.getRightY()) > THRESHOLD ? speed * 2000.0 : 0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
+    				Robot.elevator.getMaster().set(ControlMode.Velocity, Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed * 2000.0 : 0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
     			} else {
-				Robot.elevator.set(ControlMode.PercentOutput, Math.abs(OI.gamepad.getRightY()) > THRESHOLD ? speed : 0);
+				Robot.elevator.set(ControlMode.PercentOutput, Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed : 0);
     			}
     		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
@@ -70,7 +70,7 @@ public class ElevatorDriveCommand extends CommandBase {
 //    		Robot.elevator.getMaster().configPeakCurrentDuration(MANUAL_CURRENT_PEAK_LENGTH, 0);
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     		Robot.elevator.set(ControlMode.Disabled, 0);

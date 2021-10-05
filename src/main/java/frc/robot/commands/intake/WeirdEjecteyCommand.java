@@ -16,18 +16,18 @@ public class WeirdEjecteyCommand extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    public void initialize() {
     		Robot.intake.open();
     		Robot.intake.getLeftRoller().set(ControlMode.PercentOutput, 0.25);
     		Robot.intake.getRightRoller().set(ControlMode.PercentOutput, 0.25);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    public void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 
@@ -37,7 +37,7 @@ public class WeirdEjecteyCommand extends CommandBase {
     		Robot.intake.getRightRoller().set(ControlMode.PercentOutput, 0);
     }
 
-    // Called when another command which requires one or more of the same
+    // Called when another command which addRequirements one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     }

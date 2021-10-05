@@ -20,18 +20,18 @@ import frc.robot.commands.intake.JiggleCommand;
 import frc.robot.commands.intake.LiftIntakeCommand;
 import frc.robot.commands.intake.ShootCommand;
 import frc.robot.commands.intake.WeirdEjecteyCommand;
-import frc.robot.profiling.MotionProfileBuilder;
 import frc.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import frc.harkerrobolib.wrappers.DPadButtonWrapper;
-import frc.harkerrobolib.wrappers.GamepadWrapper;
-import frc.harkerrobolib.wrappers.JoystickButtonWrapper;
+import harkerrobolib.wrappers.HSDPadButton;
+import harkerrobolib.wrappers.XboxGamepad;
+import harkerrobolib.wrappers.HSJoystickButton;
 
 
 /**
@@ -67,31 +67,30 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public static final GamepadWrapper gamepad = new GamepadWrapper(0);
-	
-	public static final GamepadWrapper operator = new GamepadWrapper(1, GamepadWrapper.SETTING_LOGITECH);
+	public static final XboxGamepad DRIVER = new XboxGamepad(0);
+	public static final XboxGamepad OPERATOR = new XboxGamepad(1);
 	
 	public static void initializeCommandBindings() {
 		
 		// Standard controls
 		
-		gamepad.getButtonBumperLeft().whenPressed(new SetElevatorCommand(2.00)); // Elevator to switch position
-		gamepad.getButtonBumperRight().whenPressed(new SetElevatorCommand2(4.0 / 12.0)); // Elevator to vault position
-		gamepad.getButtonX().whenPressed(new IntakeExpansionCommand());
-		gamepad.getButtonA().whenPressed(new SetElevatorCommand(4.5));
-//		gamepad.getButtonA().whenPressed(new CANTestingCommand());
-		gamepad.getButtonY().whenPressed(new RaiseElevatorCommand());
-		gamepad.getButtonB().whenPressed(new LiftIntakeCommand());
-		gamepad.getButtonStickRight().whenPressed(new LowerElevatorCommand());
-		gamepad.getButtonStart().whilePressed(new JiggleCommand());
-		gamepad.getButtonSelect().whenPressed(new ZeroElevatorCommand());
+		DRIVER.getButtonBumperLeft().whenPressed(new SetElevatorCommand(2.00)); // Elevator to switch position
+		DRIVER.getButtonBumperRight().whenPressed(new SetElevatorCommand2(4.0 / 12.0)); // Elevator to vault position
+		DRIVER.getButtonX().whenPressed(new IntakeExpansionCommand());
+		DRIVER.getButtonA().whenPressed(new SetElevatorCommand(4.5));
+//		DRIVER.getButtonA().whenPressed(new CANTestingCommand());
+		DRIVER.getButtonY().whenPressed(new RaiseElevatorCommand());
+		DRIVER.getButtonB().whenPressed(new LiftIntakeCommand());
+		DRIVER.getButtonStickRight().whenPressed(new LowerElevatorCommand());
+		DRIVER.getButtonStart().whilePressed(new JiggleCommand());
+		DRIVER.getButtonSelect().whenPressed(new ZeroElevatorCommand());
 		
 //		operator.getButtonBumperLeft().whilePressed(new OperatorIntakeCommand());
 //		operator.getButtonBumperRight().whilePressed(new OperatorOuttakeCommand());
-		JoystickButtonWrapper leftTrigger = new JoystickButtonWrapper(operator, GamepadWrapper.LOGITECH_TRIGGER_LEFT);
-		JoystickButtonWrapper rightTrigger = new JoystickButtonWrapper(operator, GamepadWrapper.LOGITECH_TRIGGER_RIGHT);
-		DPadButtonWrapper dpadUp = new DPadButtonWrapper(operator, 0);
-		DPadButtonWrapper dpadDown = new DPadButtonWrapper(operator, 180);
+		HSJoystickButton leftTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.LEFT_TRIGGER);
+		HSJoystickButton rightTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.RIGHT_TRIGGER);
+		HSDPadButton dpadUp = new HSDPadButton(OPERATOR, 0);
+		HSDPadButton dpadDown = new HSDPadButton(OPERATOR, 180);
 		dpadUp.whenPressed(new InstantCommand() {
 			@Override
 			public void initialize() {
@@ -112,7 +111,8 @@ public class OI {
 				if(Robot.elevator.getMaster().getSelectedSensorPosition(0) > SmallRaiseCommand.DIST) {
 					Robot.intake.close();
 				} else {
-					new SmallRaiseCommand().start();
+					CommandScheduler.getInstance().schedule(new SmallRaiseCommand());
+					CommandScheduler.getInstance().run();
 				}
 			}
 		});
@@ -122,8 +122,8 @@ public class OI {
 				Robot.intake.open();
 			}
 		});
-		operator.getButtonY().whilePressed(new ShootCommand());
-		operator.getButtonA().whilePressed(new WeirdEjecteyCommand());
+		OPERATOR.getButtonY().whilePressed(new ShootCommand());
+		OPERATOR.getButtonA().whilePressed(new WeirdEjecteyCommand());
 		// gamepad.getButtonBumperLeft().whenPressed(new TestIntakeCommand());
 		// gamepad.getButtonBumperRight().whenPressed(new EjectCommand());
 		// gamepad.getButtonA().whenPressed(new SlowRaiseCommand(3.0));
@@ -178,24 +178,5 @@ public class OI {
 		// MPSettings.ORIENTATION, 10));
 		// gamepad.getButtonY().whenPressed(new PathfinderCommand(traj));
 		// gamepad.getButtonY().whenPressed(new IntakeMotionProfileCommand());
-	}
-	
-	/**
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	public static Trajectory readTrajectory(String filename) throws FileNotFoundException {
-		File f = new File(filename);
-		if(f.exists() && f.isFile() && filename.endsWith(".csv")) {
-			try {
-				return Pathfinder.readFromCSV(f);
-			} catch(Exception e) {
-				System.err.println("Pathfinder failed to read trajectory");
-			}
-		} else {
-			System.err.println("Trajectory does not exist or is not a csv file");
-		}
-		throw new FileNotFoundException("No valid csv file by that name");
 	}
 }
