@@ -48,10 +48,10 @@ public class ElevatorDriveCommand extends CommandBase {
     		if(started) {
 				double speed = OI.DRIVER.getRightY();
 				speed = Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed : 0;
-    			speed = Math.min(speed, (Elevator.LENGTH - Robot.elevator.getMaster().getSelectedSensorPosition(0)) / 12000.0);
-				speed = Math.max(speed, Robot.elevator.getMaster().getSelectedSensorPosition(0) / 12000.0);
-				if(OI.DEMO_MODE && !(OI.DRIVER.getButtonBumperLeftState() && OI.DRIVER.getButtonBumperRightState()))
-					speed *= OI.DEMO_MODE_SPEED_MULTIPLIER;
+				if(Elevator.LENGTH * 12000.0 - Robot.elevator.getMaster().getSelectedSensorPosition(0) < 0.5)
+					speed = speed > 0 ? 0 : speed;
+				if(Robot.elevator.getMaster().getSelectedSensorPosition(0)/12000.0 < 0.5)
+					speed = speed < 0 ? 0 : speed;
     			if(Robot.elevator.isVelocityClosedStatus() && Robot.elevator.isEncoderStatus()) {
     				Robot.elevator.getMaster().set(ControlMode.Velocity, speed * 2000.0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
     			} else {

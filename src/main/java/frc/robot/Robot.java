@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
 //		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
 //		cam.setResolution(640, 480);
 		rahulClock.start();
-		Drivetrain.getInstance().setDefaultCommand(new ArcadeDriveCommand() );
+		Drivetrain.getInstance().setDefaultCommand(new ArcadeDriveCommand());
 		Elevator.getInstance().setDefaultCommand(new ElevatorDriveCommand());
 	}
 	
