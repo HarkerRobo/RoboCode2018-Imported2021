@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
@@ -61,6 +62,8 @@ public class Intake extends SubsystemBase {
 			talon.enableCurrentLimit(ENABLE_CURRENT_LIMIT);
 			talon.setNeutralMode(NEUTRAL_MODE);
 		});
+
+		SmartDashboard.putBoolean("Intake Solenoid", expansion.get().equals(DoubleSolenoid.Value.kForward));
 	}
 	
 	/**

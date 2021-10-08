@@ -8,6 +8,7 @@ import frc.robot.subsystems.Elevator;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -50,7 +51,11 @@ public class ElevatorDriveCommand extends CommandBase {
 					speed = speed > 0 ? 0 : speed;
 				if(Robot.elevator.getMaster().getSelectedSensorPosition(0)/12000.0 < 0.5)
 					speed = speed < 0 ? 0 : speed;
-    			if(Robot.elevator.isVelocityClosedStatus() && Robot.elevator.isEncoderStatus()) {
+				if(Math.abs(speed) > 0.5) speed = 0.5 * ((speed < 0) ? -1 : 1);
+				SmartDashboard.putNumber("Elevator Speed", speed);
+				SmartDashboard.putNumber("Sensor Position", Robot.elevator.getMaster().getSelectedSensorPosition());
+				speed *= OI.DEMO_MODE_SPEED_MULTIPLIER;
+				if(Robot.elevator.isVelocityClosedStatus() && Robot.elevator.isEncoderStatus()) {
     				Robot.elevator.getMaster().set(ControlMode.Velocity, speed * 2000.0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
     			} else {
 				Robot.elevator.set(ControlMode.PercentOutput, speed);
