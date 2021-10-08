@@ -56,7 +56,12 @@ public class ArcadeDriveCommand extends CommandBase {
     			if(Math.abs(left) < THRESHOLD && Math.abs(right) < THRESHOLD) {
     				left = 0;
     				right = 0;
-    			}
+				}
+				else if (OI.DEMO_MODE && !(OI.DRIVER.getButtonBumperLeftState() && OI.DRIVER.getButtonBumperRightState()))
+				{
+					left *= OI.DEMO_MODE_SPEED_MULTIPLIER;
+					right *= OI.DEMO_MODE_SPEED_MULTIPLIER;
+				}
 	    		if(Robot.drivetrain.isEncoderStatus() && Robot.drivetrain.isVelocityClosedStatus()) {
 	    			Robot.drivetrain.getLeft().set(ControlMode.Velocity, MAX_SPEED * left * speedMod);
 					Robot.drivetrain.getRight().set(ControlMode.Velocity, MAX_SPEED * right * speedMod);

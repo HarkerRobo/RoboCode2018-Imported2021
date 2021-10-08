@@ -68,24 +68,26 @@ public class OI {
 	
 	public static final XboxGamepad DRIVER = new XboxGamepad(0);
 	public static final XboxGamepad OPERATOR = new XboxGamepad(1);
+	public static final boolean DEMO_MODE = true;
+	public static final double DEMO_MODE_SPEED_MULTIPLIER = 0.3;
 	
 	public static void initializeCommandBindings() {
 		
 		// Standard controls
-		
-		DRIVER.getButtonBumperLeft().whenPressed(new SetElevatorCommand(2.00)); // Elevator to switch position
-		DRIVER.getButtonBumperRight().whenPressed(new SetElevatorCommand2(4.0 / 12.0)); // Elevator to vault position
 		DRIVER.getButtonX().whenPressed(new IntakeExpansionCommand());
 		DRIVER.getButtonA().whenPressed(new SetElevatorCommand(4.5));
-//		DRIVER.getButtonA().whenPressed(new CANTestingCommand());
+		//		DRIVER.getButtonA().whenPressed(new CANTestingCommand());
 		DRIVER.getButtonY().whenPressed(new RaiseElevatorCommand());
 		DRIVER.getButtonB().whenPressed(new LiftIntakeCommand());
 		DRIVER.getButtonStickRight().whenPressed(new LowerElevatorCommand());
 		DRIVER.getButtonStart().whilePressed(new JiggleCommand());
 		DRIVER.getButtonSelect().whenPressed(new ZeroElevatorCommand());
 		
-//		operator.getButtonBumperLeft().whilePressed(new OperatorIntakeCommand());
-//		operator.getButtonBumperRight().whilePressed(new OperatorOuttakeCommand());
+		OPERATOR.getButtonBumperLeft().whenPressed(new SetElevatorCommand(2.00)); // Elevator to switch position
+		OPERATOR.getButtonBumperRight().whenPressed(new SetElevatorCommand2(4.0 / 12.0)); // Elevator to vault position
+		
+		//		operator.getButtonBumperLeft().whilePressed(new OperatorIntakeCommand());
+		//		operator.getButtonBumperRight().whilePressed(new OperatorOuttakeCommand());
 		HSJoystickButton leftTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.LEFT_TRIGGER);
 		HSJoystickButton rightTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.RIGHT_TRIGGER);
 		HSDPadButton dpadUp = new HSDPadButton(OPERATOR, 0);

@@ -46,13 +46,16 @@ public class ElevatorDriveCommand extends CommandBase {
     				Robot.elevator.getMaster().selectProfileSlot(Slot.ELEVATOR_VELOCITY.getSlot(), 0);
     		}
     		if(started) {
-    			double speed = OI.DRIVER.getRightY();
+				double speed = OI.DRIVER.getRightY();
+				speed = Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed : 0;
     			speed = Math.min(speed, (Elevator.LENGTH - Robot.elevator.getMaster().getSelectedSensorPosition(0)) / 12000.0);
-    			speed = Math.max(speed, -Robot.elevator.getMaster().getSelectedSensorPosition(0) / 12000.0);
+				speed = Math.max(speed, Robot.elevator.getMaster().getSelectedSensorPosition(0) / 12000.0);
+				if(OI.DEMO_MODE && !(OI.DRIVER.getButtonBumperLeftState() && OI.DRIVER.getButtonBumperRightState()))
+					speed *= OI.DEMO_MODE_SPEED_MULTIPLIER;
     			if(Robot.elevator.isVelocityClosedStatus() && Robot.elevator.isEncoderStatus()) {
-    				Robot.elevator.getMaster().set(ControlMode.Velocity, Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed * 2000.0 : 0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
+    				Robot.elevator.getMaster().set(ControlMode.Velocity, speed * 2000.0, DemandType.ArbitraryFeedForward, Robot.IS_COMP ? 0.11: 0.08);
     			} else {
-				Robot.elevator.set(ControlMode.PercentOutput, Math.abs(OI.DRIVER.getRightY()) > THRESHOLD ? speed : 0);
+				Robot.elevator.set(ControlMode.PercentOutput, speed);
     			}
     		}
     }
