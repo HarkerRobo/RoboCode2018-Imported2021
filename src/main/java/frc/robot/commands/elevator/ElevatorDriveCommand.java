@@ -1,6 +1,5 @@
 package frc.robot.commands.elevator;
 
-import frc.robot.Config;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.Slot;
@@ -8,7 +7,6 @@ import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
-import com.ctre.phoenix.motorcontrol.StickyFaults;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 

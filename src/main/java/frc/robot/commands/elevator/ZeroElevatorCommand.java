@@ -6,7 +6,6 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -36,7 +35,7 @@ public class ZeroElevatorCommand extends CommandBase {
 		if(Robot.elevator.getMaster().getSensorCollection()
 				.isRevLimitSwitchClosed() == (Config.Elevator.REVERSE_NORMAL == LimitSwitchNormal.NormallyOpen)) {
 			return true;
-		} else if(Robot.elevator.getMaster().getOutputCurrent() > STALL_CURRENT) {
+		} else if(Robot.elevator.getMaster().getStatorCurrent() > STALL_CURRENT) {
 			Robot.elevator.getMaster().setSelectedSensorPosition(0, 0, 0);
 			return true;
 		}

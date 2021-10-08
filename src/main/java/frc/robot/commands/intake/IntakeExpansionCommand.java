@@ -2,13 +2,9 @@ package frc.robot.commands.intake;
 
 import frc.robot.Robot;
 import frc.robot.commands.elevator.SmallRaiseCommand;
-import frc.robot.subsystems.Elevator;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /**
  *
