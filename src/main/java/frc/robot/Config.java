@@ -82,12 +82,12 @@ public class Config {
 		/**
 		 * Maximum standard current per motor (A)
 		 */
-		public static final int CONTINUOUS_CURRENT_LIMIT = 20, BAD_ENCODER_CONTINUOUS_CURRENT_LIMIT = 10;
+		public static final int CONTINUOUS_CURRENT_LIMIT = 10, BAD_ENCODER_CONTINUOUS_CURRENT_LIMIT = 5;
 		/**
 		 * A motor may deviate to currents up to peak current limit (A), for a
 		 * short peak current duration of time (ms)
 		 */
-		public static final int PEAK_CURRENT_LIMIT = 25, PEAK_CURRENT_DURATION = 50, BAD_ENCODER_PEAK_CURRENT_LIMIT = 14;
+		public static final int PEAK_CURRENT_LIMIT = 15, PEAK_CURRENT_DURATION = 50, BAD_ENCODER_PEAK_CURRENT_LIMIT = 7;
 		/**
 		 * Controls whether current limiting is active
 		 */

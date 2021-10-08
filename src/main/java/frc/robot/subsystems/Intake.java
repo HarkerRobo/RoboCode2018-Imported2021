@@ -33,8 +33,8 @@ public class Intake extends SubsystemBase {
 	private DoubleSolenoid expansion, raise;
 	/**
 	 * Are all of the parts of this intake functioning?
-	 */
-	private boolean solenoidStatus;
+	 */	
+	public static final double MIN_DIST = 0.2 * Elevator.FEET_TO_ENCODER;
 	
 	/**
 	 * Initialize the intake subsystem
@@ -46,7 +46,6 @@ public class Intake extends SubsystemBase {
 		try {
 			expansion = new DoubleSolenoid(EXPANSION_SOLENOID_A, EXPANSION_SOLENOID_B);
 			raise = new DoubleSolenoid(RAISING_SOLENOID_A, RAISING_SOLENOID_B);
-			solenoidStatus = true;
 		} catch (Exception e) {
 			System.err.println("Intake: Could not find intake solenoids");
 		}

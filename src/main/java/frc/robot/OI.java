@@ -8,19 +8,13 @@
 
 package frc.robot;
 
-import frc.robot.commands.elevator.LowerElevatorCommand;
-import frc.robot.commands.elevator.RaiseElevatorCommand;
-import frc.robot.commands.elevator.SetElevatorCommand;
-import frc.robot.commands.elevator.SetElevatorCommand2;
 import frc.robot.commands.elevator.SmallRaiseCommand;
 import frc.robot.commands.elevator.ZeroElevatorCommand;
-import frc.robot.commands.intake.IntakeExpansionCommand;
 import frc.robot.commands.intake.JiggleCommand;
-import frc.robot.commands.intake.LiftIntakeCommand;
 import frc.robot.commands.intake.ShootCommand;
 import frc.robot.commands.intake.WeirdEjecteyCommand;
 import frc.robot.subsystems.Elevator;
-
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -74,42 +68,17 @@ public class OI {
 	public static void initializeCommandBindings() {
 		
 		// Standard controls
-		DRIVER.getButtonX().whenPressed(new IntakeExpansionCommand());
-		DRIVER.getButtonA().whenPressed(new SetElevatorCommand(4.5));
-		//		DRIVER.getButtonA().whenPressed(new CANTestingCommand());
-		DRIVER.getButtonY().whenPressed(new RaiseElevatorCommand());
-		DRIVER.getButtonB().whenPressed(new LiftIntakeCommand());
-		DRIVER.getButtonStickRight().whenPressed(new LowerElevatorCommand());
 		DRIVER.getButtonStart().whilePressed(new JiggleCommand());
 		DRIVER.getButtonSelect().whenPressed(new ZeroElevatorCommand());
-		
-		OPERATOR.getButtonBumperLeft().whenPressed(new SetElevatorCommand(2.00)); // Elevator to switch position
-		OPERATOR.getButtonBumperRight().whenPressed(new SetElevatorCommand2(4.0 / 12.0)); // Elevator to vault position
 		
 		//		operator.getButtonBumperLeft().whilePressed(new OperatorIntakeCommand());
 		//		operator.getButtonBumperRight().whilePressed(new OperatorOuttakeCommand());
 		HSJoystickButton leftTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.LEFT_TRIGGER);
 		HSJoystickButton rightTrigger = new HSJoystickButton(OPERATOR, XboxGamepad.RIGHT_TRIGGER);
-		HSDPadButton dpadUp = new HSDPadButton(OPERATOR, 0);
-		HSDPadButton dpadDown = new HSDPadButton(OPERATOR, 180);
-		dpadUp.whenPressed(new InstantCommand() {
-			@Override
-			public void initialize() {
-				Robot.intake.raise();
-			}
-		});
-		dpadDown.whenPressed(new InstantCommand() {
-			@Override
-			public void initialize() {
-				if(Robot.elevator.getMaster().getSelectedSensorPosition(0) < SmallRaiseCommand.DIST)
-					Robot.intake.open();
-				Robot.intake.lower();
-			}
-		});
 		leftTrigger.whenPressed(new InstantCommand() {
 			@Override
 			public void initialize() {
-				if(Robot.elevator.getMaster().getSelectedSensorPosition(0) > SmallRaiseCommand.DIST) {
+				if(Robot.elevator.getMaster().getSelectedSensorPosition(0) > Intake.MIN_DIST) {
 					Robot.intake.close();
 				} else {
 					CommandScheduler.getInstance().schedule(new SmallRaiseCommand());

@@ -57,15 +57,6 @@ public class Robot extends TimedRobot {
 	
 	public static boolean falling = false;
 	
-	public static enum Position {
-		LEFT, LEFT_SWITCH, MID, RIGHT_SWITCH, RIGHT
-	}
-	
-	public static enum Goal {
-		SWITCH, SWITCH_SIDE, SCALE, LINE
-	}
-	
-	private ClockAdapter rahulClock = new ClockAdapter();
 	
 	double [] ypr;
 	
@@ -75,7 +66,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		if(!SmartDashboard.containsKey("LLL Wait"))
+		/* if(!SmartDashboard.containsKey("LLL Wait"))
 			SmartDashboard.putNumber("LLL Wait", 0.0);
 		if(!SmartDashboard.containsKey("LRL Wait"))
 			SmartDashboard.putNumber("LRL Wait", 0.0);
@@ -85,15 +76,14 @@ public class Robot extends TimedRobot {
 			SmartDashboard.putNumber("RRR Wait", 0.0);
 		if(!SmartDashboard.containsKey("Position Override")){
 			SmartDashboard.putNumber("Position Override", 0);
-		}
+		} */
 //		pigeon.configTemperatureCompensationEnable(true, 100);
 //		pdp.clearStickyFaults();
 		compressor.setClosedLoopControl(true);
 		OI.initializeCommandBindings();
-		 ypr = new double [3];
+		ypr = new double [3];
 //		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
 //		cam.setResolution(640, 480);
-		rahulClock.start();
 		Drivetrain.getInstance().setDefaultCommand(new ArcadeDriveCommand());
 		Elevator.getInstance().setDefaultCommand(new ElevatorDriveCommand());
 	}
@@ -151,7 +141,6 @@ public class Robot extends TimedRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		log("Teleop initialized");
-		rahulClock.sendTime(135);
 	}
 	
 	/**

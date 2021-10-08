@@ -1,7 +1,6 @@
 package frc.robot.commands.elevator;
 
 import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -11,8 +10,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
  *
  */
 public class SmallRaiseCommand extends InstantCommand {
-	
-	public static final double DIST = 0.2 * Elevator.FEET_TO_ENCODER;
 
     public SmallRaiseCommand() {
         addRequirements(Robot.elevator);
