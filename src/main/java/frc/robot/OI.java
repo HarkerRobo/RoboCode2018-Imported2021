@@ -8,7 +8,6 @@
 
 package frc.robot;
 
-import frc.robot.commands.*;
 import frc.robot.commands.elevator.LowerElevatorCommand;
 import frc.robot.commands.elevator.RaiseElevatorCommand;
 import frc.robot.commands.elevator.SetElevatorCommand;

@@ -21,7 +21,7 @@ public class RobotMap {
 		/**
 		 * 4 Cim motors, 2 per gearbox run the drivetrain
 		 */
-		public static final int LEFT_TALON = 5, RIGHT_TALON = 2, LEFT_VICTOR = 4, RIGHT_VICTOR = 3;
+		public static final int LEFT_TALON = 0, RIGHT_TALON = 1, LEFT_VICTOR = 1, RIGHT_VICTOR = 1;
 		/**
 		 * 1 VersaPlanetary encoder is in each gearbox, is it connected through
 		 * #0 or #1
@@ -49,7 +49,7 @@ public class RobotMap {
 		/**
 		 * On each side of the intake, one motor runs two compliant wheels
 		 */
-		public static final int LEFT_ROLLER = 6, RIGHT_ROLLER = 1;
+		public static final int LEFT_ROLLER = 6, RIGHT_ROLLER = 18;
 		/**
 		 * On each side of the intake, a solenoid can extend to shrink the
 		 * intake area

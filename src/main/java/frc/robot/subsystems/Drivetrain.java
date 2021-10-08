@@ -67,6 +67,9 @@ public class Drivetrain extends SubsystemBase {
 			// invert
 			leftMaster.setInverted(true);
 			leftFollower.setInverted(true);
+
+			rightFollower.setInverted(false);
+			rightMaster.setInverted(false);
 			// Set following
 			leftFollower.follow(leftMaster);
 			rightFollower.follow(rightMaster);
@@ -413,6 +416,9 @@ public class Drivetrain extends SubsystemBase {
 		return rightMaster;
 	}
 	
+	public VictorSPX getRightFollower() {
+		return rightFollower;
+	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	

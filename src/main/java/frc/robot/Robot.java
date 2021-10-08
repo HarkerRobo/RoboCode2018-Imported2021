@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.io.PrintWriter;
 
+import frc.robot.commands.drivetrain.ArcadeDriveCommand;
+import frc.robot.commands.elevator.ElevatorDriveCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -92,6 +94,8 @@ public class Robot extends TimedRobot {
 //		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
 //		cam.setResolution(640, 480);
 		rahulClock.start();
+		Drivetrain.getInstance().setDefaultCommand(new ArcadeDriveCommand() );
+		Elevator.getInstance().setDefaultCommand(new ElevatorDriveCommand());
 	}
 	
 	/* (non-Javadoc)

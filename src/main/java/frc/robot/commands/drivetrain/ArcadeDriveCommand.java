@@ -59,10 +59,11 @@ public class ArcadeDriveCommand extends CommandBase {
     			}
 	    		if(Robot.drivetrain.isEncoderStatus() && Robot.drivetrain.isVelocityClosedStatus()) {
 	    			Robot.drivetrain.getLeft().set(ControlMode.Velocity, MAX_SPEED * left * speedMod);
-	    			Robot.drivetrain.getRight().set(ControlMode.Velocity, MAX_SPEED * right * speedMod);
+					Robot.drivetrain.getRight().set(ControlMode.Velocity, MAX_SPEED * right * speedMod);
 	    		} else {
 	    			Robot.drivetrain.getLeft().set(ControlMode.PercentOutput, left * speedMod);
-	    			Robot.drivetrain.getRight().set(ControlMode.PercentOutput, right * speedMod);
+					Robot.drivetrain.getRight().set(ControlMode.PercentOutput, right * speedMod);
+					System.out.println(Robot.drivetrain.getRightFollower().getMotorOutputPercent());
 	    		}
     		}
     }
